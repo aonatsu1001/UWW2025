@@ -1,0 +1,174 @@
+%\documentstyle[a4j,epsbox,graphicx]{jarticle}
+\documentclass[a4j]{jarticle}%変更禁止！
+%%%%%%%%%%%%usepackageは適宜追加してください．%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{epsbox}
+%\usepackage{graphicx}
+\usepackage[dvipdfmx]{graphicx,color}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{multirow}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%ここから変更禁止%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\topmargin -28mm
+\oddsidemargin -15mm
+\evensidemargin -15mm
+\textwidth 185mm
+\textheight 275mm
+\columnsep 6mm
+
+%\def\toujitu{Dec. 2020}
+
+\makeatletter
+\def\section{\@startsection{section}{2}{\z@}{.8ex plus .8ex minus 
+ .2ex}{.05ex plus .07ex}{\large\bf}}
+\makeatother
+\makeatletter
+\def\subsection{\@startsection{subsection}{2}{\z@}{.8ex plus .8ex minus 
+ .2ex}{.05ex plus .07ex}{\bf}}
+\makeatother
+
+
+\pagestyle{empty}
+
+\begin{document}
+
+\baselineskip 4.75mm
+
+\twocolumn
+[
+\footnotesize 
+\begin{center}
+{~}\\
+%\begin{center}
+%{ユビキタスウェアラブルワークショップ2021　
+%\hfill \toujitu}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%ここまで変更禁止%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%注意！！\vspaceは図表部分のみ見にくく（醜く）ならない範囲内で使用可能とします．%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\medskip
+{\large
+%タイトル
+{\bf 視点移動情報に基づく外部カメラでの視野拡張を用いたHMD装着時の作業効率向上システム}\\
+}
+\medskip
+{\large
+%著者　同じ所属の人が連続する場合は連続する同じ所属の著者の最後の著者のみに所属を付けること．
+         堀部青夏,  寺田 努, 塚本昌彦(神戸大)
+}
+\end{center}
+]
+
+\section{研究の背景と目的}
+近年のHMDの注目度の向上と普及により，HMDの機能である仮想空間上でのディスプレイ表示を活用して，HMDを装着した状態での作業機会が増加する可能性がある．
+しかし，HMD装着時における首の疲労感や，視野の狭さによる作業効率の低下が課題として挙げられる．
+Chiharaらは，HMD装着時に背筋を伸ばして座った状態で目の高さにあるものを注視する姿勢を保つことで，首の負担を最小限に抑えられると示唆した\cite{bib1}．よって，HMD装着時に首を動かすことなく視野が拡張できれば，首の疲労感を低減し，作業効率を向上できると考える．
+
+そこで本研究では，視点の動きのみで視野を拡張するシステムを提案する．
+
+
+\section{提案システム}
+提案システムの外観を図\ref{fig1}に示す．提案システムには，アイトラッキングによるユーザの視点情報取得と，カラーパススルーによるARでの実装が可能なPICO 4 Enterpriseを用いた．さらに，視野外の映像を取得するためにLogicool社のウェブカメラ C505eをHMDの下側に取り付けた．外部カメラはPCに繋いでおり，専用のプログラムを用いてPCからHMDに画像を転送する．また，PICO 4 Enterpriseの解像度は4320×2160でリフレッシュレートは90Hzであり，外部カメラの解像度は1080×720でフレームレートは30fpsである．そして，ユーザの視点が下に移動するとHMDに取り付けた外部カメラの視野外映像をポップアップ表示する．外部カメラで表示した手元の映像を図\ref{fig2}に示す．
+
+
+
+\section{評価実験} 
+\subsection{実験内容}
+提案システムにより，HMD装着時の作業効率が向上し，首の動きが軽減されるか評価するための実験を行った．被験者は20代男性4名である．本実験ではHMDを装着した被験者に，提示された英語の文章をタイピングするタスクを課した．評価方法として，タイピングの速度と正確さ，タスク中の首の動きを提案システムの有無で比較した．
+首の動きに関しては，頭部の動きを首の動きとみなして頭部の角速度を測定した．また，被験者ごとに測定位置が変わらないようにするために，被験者は頭頂部に角速度センサが設置されたニット帽を被り，センサを水平にした状態で実験を開始した．
+
+
+
+\subsection{結果と考察}
+システムの有無によるタイピング速度と正確さを表1に示す．
+提案システムにより4名のうち，被験者A, Bはタイピングの速度が低下，または変わらなかったが，タイピングの正確さが向上した．
+一方，被験者C, Dはタイピングの速度は向上したが，タイピングの正確さが低下した．
+首の動きに関しては，全ての被験者において，システムを用いることで角速度の振れ幅が小さくなり，首の動きが軽減された．
+
+被験者間で結果に違いが出た要因として，視野外映像の画質低下とタッチタイピングの有無の二点が挙げられる．提案システムでは，ポップアップ表示された視野外映像の画質が低下する課題があった．
+そして，被験者A, BとC, Dの結果がそれぞれ類似していることに着目し調査をしたところ，被験者A, Bは普段タッチタイピングをしないのに対し，C, Dはタッチタイピングをするという違いがあった．
+被験者A, Bは被験者C, Dに比べてカメラ映像の表示回数が多く，その分カメラ画質の悪さの影響で確認に時間がかかったため，タイピングの速度が低下，または向上しなかったと考えられる．
+また，カメラで手元を見ることにより，タイピングの正確さが向上したと考えられる．
+被験者C, Dに関しては，速度が向上し正確さが低下した原因は分からなかった．
+タッチタイピングの有無により，視野外映像を表示させる回数が異なったことで，速度と正確さに違いが見られたと考えられる．
+
+
+
+\section{まとめと今後の展望}
+本稿では，視点の動きに合わせて視野を拡張するシステムを提案した．また，HMD装着時の作業効率が向上し，首の動きが軽減されるか調査した．
+今後は，被験者数を増やし，実験環境を改善する．
+そのために，カメラ映像の転送時に画質が低下する問題を改善する．そして，筋電センサを用いて首の疲労感に関する調査を行い，
+作業効率の変動を的確に明らかにするタスクを課して十分なデータを収集する．
+
+
+
+ \begin{thebibliography}{10}
+\bibitem{bib1}T. Chihara and A. Seo: Evaluation of Physical Workload Affected by Mass and Center of Mass of Head-Mounted Display, \textit{Journal of Applied Ergonomics}, Vol. 68,  pp. 204--212 (Apr. 2018).
+
+\end{thebibliography}
+
+%\begin{table}[t]
+%\caption{タイピング速度と正確さの増減率}
+%\vspace{1mm}
+%\begin{tabular}{c|cccc} \hline\hline
+%被験者     & A        & B       & C       & D       \\ \hline
+%速度(wpm) & $-$ 25.7 \% & $±$ 0 \%  & $+$ 4.9 \% & $+$ 3.8 \% \\ 
+%正確さ(\%) & $+$ 4.6 \% & $+$ 1.8 \% & $-$ 3.9 \% & $-$ 0.6 \% \\ \hline
+%\end{tabular}
+%\end{table}
+
+
+%\begin{table}[t]
+%\caption{タイピング速度と正確さの増減率}
+%\vspace{-2mm}
+%\center
+%\begin{tabular}{c|cccc} \hline\hline
+%被験者     & A        & B       & C       & D       \\ \hline
+%速度(wpm) & 10.4 & 21.4  & 30.2 & 38.4 \\ 
+%正確さ(\%) & 96.3 & 93.9 & 91 & 91.9 \\ \hline
+%速度(wpm) & 14 & 21.4  & 28.8 & 37 \\ 
+%正確さ(\%) & 92.1 & 92.2 & 94.7 & 92.5 \\ \hline
+%\end{tabular}
+%\end{table}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+\caption{システムの有無によるタイピング速度と正確さ}
+\vspace{-2mm}
+\center
+\begin{tabular}{c|c|cccc}\hline\hline
+\multicolumn{2}{c|}{被験者}       & A    & B    & C    & D    \\\hline
+\multirow{2}{*}{速度(wpm)}  & システムあり & 10.4 & 21.4 & 30.2 & 38.4 \\
+                     & システムなし & 14   & 21.4 & 28.8 & 37   \\\hline
+\multirow{2}{*}{正確さ(\%)} & システムあり & 96.3 & 93.9 & 91   & 91.9 \\
+                     & システムなし & 92.1 & 92.2 & 94.7 & 92.5 \\\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+\vspace{-8mm}
+  \begin{center}
+    \includegraphics[width=1\linewidth]{system.pdf}
+  \end{center}
+    \vspace{-3.2cm} 
+  \caption{提案システムの外観}%{}内にタイトルを記入してください
+  \label{fig1}
+\end{figure}
+\begin{figure}[!t]
+\vspace{-6mm}
+  \begin{center}
+    \includegraphics[width=1\linewidth]{display.pdf}
+  \end{center}
+    \vspace{-2.4cm} 
+  \caption{外部カメラで表示した手元の映像}%{}内にタイトルを記入してください
+  \label{fig2}
+\vspace{-0.1cm} 
+\end{figure}
+
+
+\end{document}
+
+
+
+\end{document}
